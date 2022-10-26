@@ -9,9 +9,8 @@ class Solution(object):
         N = len(needle)
         k = -1
         for i in range(M):
-            if haystack[i] == needle[0]:
-                if haystack[i:i+N] == needle[0:N]:
-                    k = i
-                    break
+            if haystack[i:i+N] == needle:
+                k = i
+                break
                 
         return k
