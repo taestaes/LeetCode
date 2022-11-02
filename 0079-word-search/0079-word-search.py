@@ -11,17 +11,19 @@ class Solution(object):
             for j in range(n):
                 if self.dfs(board, i, j, word):
                     return True
+
         return False
 
     def dfs(self, board, i, j, word):
-        if len(word) == 0:
+        if word == '':
             return True
         
-        if i<0 or i>=len(board) or j<0 or j>=len(board[0]) or word[0] != board[i][j]:
-            return False
-        
-        temp = board[i][j]
-        board[i][j] = '#'
-        res = self.dfs(board, i + 1, j , word[1:]) or self.dfs(board, i - 1, j , word[1:]) or self.dfs(board, i  , j-1 , word[1:]) or self.dfs(board, i, j+1 , word[1:]) 
-        board[i][j] = temp
-        return res
+        if 0<=i<len(board) and 0<=j<len(board[0]):
+            temp = board[i][j]
+            if board[i][j] == word[0]:
+                board[i][j] = '#'
+                word = word[1:]
+                if self.dfs(board, i + 1, j , word) or self.dfs(board, i - 1, j , word) or  self.dfs(board, i , j - 1, word) or self.dfs(board, i , j + 1, word):
+                    return True
+                else:
+                    board[i][j] = temp
