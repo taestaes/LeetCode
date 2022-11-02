@@ -20,7 +20,7 @@ class Solution(object):
         
         if 0<=i<len(board) and 0<=j<len(board[0]):
             temp = board[i][j]
-            if temp == word[0]:
+            if board[i][j] == word[0]:
                 board[i][j] = '#'
                 word = word[1:]
                 if self.dfs(board, i + 1, j , word) or self.dfs(board, i - 1, j , word) or  self.dfs(board, i , j - 1, word) or self.dfs(board, i , j + 1, word):
